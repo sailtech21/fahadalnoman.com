@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import profileImg from "@/assets/fahad-profile.png";
+import profileImg from "@/assets/fahad-loader.png";
 
 const Loader = ({ onComplete }: { onComplete: () => void }) => {
   return (
