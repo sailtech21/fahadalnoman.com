@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import profileImg from "@/assets/fahad-loader.png";
 
 const nameText = "Fahad Al Noman";
@@ -7,23 +7,51 @@ const nameText = "Fahad Al Noman";
 // Sketch lines that simulate "drawing" strokes around/over the portrait
 const sketchLines = [
   // Face outline
-  { d: "M 80 20 Q 40 40 35 100 Q 30 160 60 200 Q 90 240 130 245 Q 170 240 200 200 Q 225 160 220 100 Q 215 40 180 20 Q 140 5 80 20", delay: 0 },
+  { d: "M 80 20 Q 40 40 35 100 Q 30 160 60 200 Q 90 240 130 245 Q 170 240 200 200 Q 225 160 220 100 Q 215 40 180 20 Q 140 5 80 20", delay: 0.1 },
   // Hair strokes
-  { d: "M 60 60 Q 70 20 120 10 Q 170 5 200 30 Q 220 50 225 80", delay: 0.15 },
-  { d: "M 50 80 Q 55 40 90 20 Q 130 5 160 15", delay: 0.25 },
+  { d: "M 60 60 Q 70 20 120 10 Q 170 5 200 30 Q 220 50 225 80", delay: 0.3 },
+  { d: "M 50 80 Q 55 40 90 20 Q 130 5 160 15", delay: 0.5 },
   // Eye area
-  { d: "M 75 105 Q 85 95 105 100 Q 115 105 110 112", delay: 0.5 },
-  { d: "M 145 105 Q 155 95 175 100 Q 185 105 180 112", delay: 0.55 },
+  { d: "M 75 105 Q 85 95 105 100 Q 115 105 110 112", delay: 0.9 },
+  { d: "M 145 105 Q 155 95 175 100 Q 185 105 180 112", delay: 1.0 },
   // Nose
-  { d: "M 130 110 Q 125 140 120 155 Q 115 160 125 165", delay: 0.7 },
+  { d: "M 130 110 Q 125 140 120 155 Q 115 160 125 165", delay: 1.2 },
   // Mouth
-  { d: "M 100 185 Q 120 200 140 195 Q 160 190 165 185", delay: 0.8 },
+  { d: "M 100 185 Q 120 200 140 195 Q 160 190 165 185", delay: 1.4 },
   // Shoulder lines
-  { d: "M 30 230 Q 50 260 130 270 Q 210 260 230 230", delay: 0.9 },
+  { d: "M 30 230 Q 50 260 130 270 Q 210 260 230 230", delay: 1.6 },
 ];
+
+// Total sketch duration: last delay (1.6) + path duration (1.0) + hold (0.4)
+const SKETCH_PHASE_DURATION = 3000;
+// Reveal duration in ms
+const REVEAL_PHASE_DURATION = 1600;
 
 const Loader = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"sketching" | "revealing" | "text" | "done">("sketching");
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
+
+  // Use timers for reliable phase transitions instead of onAnimationComplete
+  useEffect(() => {
+    const t1 = setTimeout(() => {
+      if (phaseRef.current === "sketching") setPhase("revealing");
+    }, SKETCH_PHASE_DURATION);
+
+    const t2 = setTimeout(() => {
+      if (phaseRef.current === "revealing") setPhase("text");
+    }, SKETCH_PHASE_DURATION + REVEAL_PHASE_DURATION);
+
+    const t3 = setTimeout(() => {
+      if (phaseRef.current === "text") setPhase("done");
+    }, SKETCH_PHASE_DURATION + REVEAL_PHASE_DURATION + 1400);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
 
   return (
     <motion.div
@@ -41,11 +69,12 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
         <motion.div
           className="absolute w-80 h-80 rounded-full"
           style={{
-            background: "radial-gradient(circle, hsla(183,100%,50%,0.08) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, hsla(183,100%,50%,0.1) 0%, hsla(252,100%,69%,0.04) 40%, transparent 70%)",
           }}
           initial={{ opacity: 0, scale: 0.3 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          animate={{ opacity: 1, scale: 1.2 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
         />
 
         {/* Portrait container */}
@@ -61,30 +90,26 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
                 ? { opacity: 0 }
                 : { opacity: 1 }
             }
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             {sketchLines.map((line, i) => (
               <motion.path
                 key={i}
                 d={line.d}
                 stroke="url(#sketchGradient)"
-                strokeWidth={1.5}
+                strokeWidth={1.8}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                fill="none"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.8 }}
+                animate={{ pathLength: 1, opacity: 0.9 }}
                 transition={{
                   pathLength: {
                     delay: line.delay,
-                    duration: 0.8,
+                    duration: 1.0,
                     ease: [0.65, 0, 0.35, 1],
                   },
-                  opacity: { delay: line.delay, duration: 0.2 },
-                }}
-                onAnimationComplete={() => {
-                  if (i === sketchLines.length - 1) {
-                    setTimeout(() => setPhase("revealing"), 200);
-                  }
+                  opacity: { delay: line.delay, duration: 0.15 },
                 }}
               />
             ))}
@@ -102,52 +127,41 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
             className="absolute inset-0 rounded-2xl overflow-hidden z-10"
             style={{
               backgroundImage: `url(${profileImg})`,
-              backgroundSize: "100% 100%",
-              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundPosition: "center top",
             }}
-            initial={{ clipPath: "circle(0% at 50% 45%)", opacity: 0 }}
+            initial={{ clipPath: "circle(0% at 50% 40%)", opacity: 0 }}
             animate={
               phase === "revealing" || phase === "text" || phase === "done"
-                ? { clipPath: "circle(75% at 50% 45%)", opacity: 1 }
-                : { clipPath: "circle(0% at 50% 45%)", opacity: 0 }
+                ? { clipPath: "circle(80% at 50% 40%)", opacity: 1 }
+                : { clipPath: "circle(0% at 50% 40%)", opacity: 0 }
             }
             transition={{
-              duration: 1.4,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-            onAnimationComplete={() => {
-              if (phase === "revealing") {
-                setPhase("text");
-              }
+              clipPath: { duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] },
+              opacity: { duration: 0.3 },
             }}
           />
 
           {/* Shimmer sweep */}
-          <motion.div
-            className="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none"
-            initial={{ opacity: 0 }}
-            animate={
-              phase === "text" || phase === "done"
-                ? { opacity: [0, 1, 0] }
-                : { opacity: 0 }
-            }
-            transition={{ duration: 1, ease: "easeInOut" }}
-          >
+          {(phase === "text" || phase === "done") && (
             <motion.div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(105deg, transparent 40%, rgba(0,245,255,0.12) 50%, transparent 60%)",
-              }}
-              initial={{ x: "-100%" }}
-              animate={
-                phase === "text" || phase === "done"
-                  ? { x: "200%" }
-                  : { x: "-100%" }
-              }
-              transition={{ duration: 1, ease: "easeInOut" }}
-            />
-          </motion.div>
+              className="absolute inset-0 z-30 rounded-2xl overflow-hidden pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            >
+              <motion.div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(105deg, transparent 35%, rgba(0,245,255,0.15) 50%, transparent 65%)",
+                }}
+                initial={{ x: "-100%" }}
+                animate={{ x: "200%" }}
+                transition={{ duration: 1.2, ease: "easeInOut" }}
+              />
+            </motion.div>
+          )}
 
           {/* Border glow */}
           <motion.div
@@ -160,7 +174,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
             initial={{ opacity: 0 }}
             animate={
               phase === "text" || phase === "done"
-                ? { opacity: [0, 1] }
+                ? { opacity: 1 }
                 : { opacity: 0 }
             }
             transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -188,14 +202,9 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
                     : { opacity: 0, y: 24, filter: "blur(8px)" }
                 }
                 transition={{
-                  delay: i * 0.04,
+                  delay: i * 0.045,
                   duration: 0.5,
                   ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                onAnimationComplete={() => {
-                  if (i === nameText.length - 1 && phase === "text") {
-                    setTimeout(() => setPhase("done"), 800);
-                  }
                 }}
               >
                 {char === " " ? "\u00A0" : char}
@@ -217,7 +226,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
               ? { width: 180, opacity: 1 }
               : { width: 0, opacity: 0 }
           }
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
         />
       </div>
     </motion.div>
