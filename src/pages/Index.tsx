@@ -9,6 +9,7 @@ import ServicesSection from "@/components/ServicesSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import TechStackSection from "@/components/TechStackSection";
 import TimelineSection from "@/components/TimelineSection";
+import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ParticlesBackground from "@/components/ParticlesBackground";
@@ -30,6 +31,7 @@ const Index = () => {
         <WhyChooseSection />
         <TechStackSection />
         <TimelineSection />
+        <BlogSection />
         <ContactSection />
         <Footer />
       </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const links = ["About", "Skills", "Work", "Services", "Contact"];
+const links = ["About", "Skills", "Work", "Services", "Blog", "Contact"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +24,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-2xl font-bold text-gradient">ZURVIX</a>
+        <a href="#" className="text-2xl font-bold text-gradient">Fahad Al Noman</a>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
@@ -39,7 +39,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="https://wa.me/8801601345600"
+            href="https://wa.me/+8801601345600"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-lg text-sm font-medium bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"

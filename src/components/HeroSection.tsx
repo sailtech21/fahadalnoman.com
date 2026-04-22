@@ -70,7 +70,7 @@ const HeroSection = () => {
               Hire Me <ExternalLink size={16} />
             </a>
             <a
-              href="https://wa.me/8801601345600"
+              href="https://wa.me/+8801601345600"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-lg font-medium bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20 transition-colors flex items-center gap-2"
