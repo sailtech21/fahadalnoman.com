@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import { techStack } from "@/lib/data";
 import {
-  SiReact, SiNodedotjs, SiLaravel, SiPhp, SiMysql, SiGithub, SiVercel, SiVisualstudiocode,
+  SiReact, SiNodedotjs, SiLaravel, SiPhp, SiMysql, SiGithub, SiVercel,
 } from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
 import { Cloud, Server, Brain } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
