@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import logoImg from "@/assets/logo-fan.png";
+
 
 const links = [
   { label: "About", path: "/about" },
@@ -44,13 +44,10 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img
-              src={logoImg}
-              alt="Fahad Al Noman Logo"
-              className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)]"
-            />
-            <span className="text-xl md:text-2xl font-bold text-gradient">Fahad Al Noman</span>
+          <Link to="/" className="flex items-center gap-1 group">
+            <span className="text-2xl md:text-3xl font-extrabold tracking-tight text-gradient transition-all duration-300 group-hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.5)]">
+              Fahad<span className="text-foreground font-light ml-1.5">Al Noman</span>
+            </span>
           </Link>
 
           {/* Desktop */}
