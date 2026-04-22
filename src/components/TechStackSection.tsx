@@ -18,7 +18,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Vercel: <SiVercel size={32} />,
   Hostinger: <Cloud size={32} />,
   "Claude AI": <Brain size={32} />,
-  "VS Code": <SiVisualstudiocode size={32} />,
+  "VS Code": <VscCode size={32} />,
 };
 
 const TechStackSection = () => (
