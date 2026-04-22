@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import logoImg from "@/assets/logo-fan.png";
 
 const links = [
   { label: "About", path: "/about" },
@@ -43,7 +44,14 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          <Link to="/" className="text-xl md:text-2xl font-bold text-gradient">Fahad Al Noman</Link>
+          <Link to="/" className="flex items-center gap-2 group">
+            <img
+              src={logoImg}
+              alt="Fahad Al Noman Logo"
+              className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.6)]"
+            />
+            <span className="text-xl md:text-2xl font-bold text-gradient">Fahad Al Noman</span>
+          </Link>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -100,8 +108,9 @@ const Navbar = () => {
             <div className="relative z-10 flex flex-col h-full">
               {/* Header */}
               <div className="px-4 py-3 flex items-center justify-between">
-                <Link to="/" className="text-xl font-bold text-gradient" onClick={() => setOpen(false)}>
-                  Fahad Al Noman
+                <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+                  <img src={logoImg} alt="Logo" className="h-8 w-auto" />
+                  <span className="text-xl font-bold text-gradient">Fahad Al Noman</span>
                 </Link>
                 <button
                   className="text-foreground p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
