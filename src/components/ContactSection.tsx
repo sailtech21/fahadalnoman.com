@@ -79,7 +79,7 @@ const ContactSection = () => {
         </div>
 
         {/* Right - Form */}
-        <div className="glass-strong rounded-2xl p-8 glow-purple">
+        <div className="glass-strong rounded-2xl p-5 sm:p-8 glow-purple">
           <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
