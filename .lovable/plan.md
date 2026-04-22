@@ -1,47 +1,50 @@
 
 
-# Replace Loader with Animated Portrait SVG
+# Elegant Loading Animation with Animated Portrait Assembly
 
 ## Overview
-Replace the current "ZURVIX" loading screen with an SVG stroke-drawing animation of Fahad's portrait. The outline draws itself progressively, then fills in with the image before the page fades in.
+Replace the current loader with a sophisticated multi-phase animation where the portrait image assembles from fragmented pieces (slices that slide, scale, and fade into place), followed by a smooth text reveal of "Fahad Al Noman".
 
-## How It Works
-1. Loader displays a hand-traced SVG silhouette path of the portrait
-2. The path animates via `stroke-dasharray` / `stroke-dashoffset` over ~2 seconds, drawing the outline
-3. Once the outline completes, the portrait image fades in behind/inside the path using a `clipPath`
-4. "Fahad AL Noman" text fades in below the portrait
-5. The entire loader fades out, revealing the page
+## Animation Sequence (Total ~4s)
 
-## Changes
+**Phase 1 — Particle Shimmer (0–0.5s)**
+Floating cyan/purple particles converge toward the center, establishing visual focus.
 
-### 1. Copy uploaded image to project
-Copy `user-uploads://ChatGPT_Image_Apr_23_2026_03_04_21_AM.png` to `src/assets/fahad-profile.png` (replacing the existing profile image).
+**Phase 2 — Portrait Assembly (0.3–2.2s)**
+The portrait image is split into a grid of segments (using CSS `clip-path` on multiple copies of the image). Each segment:
+- Starts scattered (random offset + rotation + scale 0)
+- Animates to its correct position with staggered timing
+- Uses `easeInOut` cubic bezier for smooth motion
 
-### 2. Update `src/components/Loader.tsx`
-- Remove the "ZURVIX" heading entirely
-- Add an inline SVG with a simplified portrait silhouette path (head + shoulders outline)
-- Apply CSS `stroke-dasharray` and `stroke-dashoffset` animation to draw the outline over ~1.8s
-- After the stroke animation, fade in the actual portrait image clipped to the silhouette shape
-- Keep "Fahad AL Noman" as a subtitle that fades in after the portrait
-- Keep "Loading Experience..." text
-- Maintain the existing `framer-motion` fade-out transition to the main page
+Segments assemble from outside inward, creating a "pieces falling into place" effect.
 
-### 3. Add keyframes to `src/index.css`
-Add a `@keyframes draw-stroke` animation:
-```css
-@keyframes draw-stroke {
-  to { stroke-dashoffset: 0; }
-}
-```
+**Phase 3 — Glow + Border (2.0–2.8s)**
+Once the portrait is complete:
+- A soft cyan glow radiates outward
+- A thin gradient border traces around the portrait silhouette
 
-## Technical Details
-- The SVG silhouette will be a simplified head-and-shoulders path (~10-15 path commands) styled with a cyan/primary-colored stroke
-- `stroke-dasharray` set to total path length; `stroke-dashoffset` animates from full length to 0
-- The portrait PNG is placed behind the SVG using `clipPath` referencing the same silhouette, with a delayed opacity transition
-- Total loader duration remains ~2.5s before fade-out
+**Phase 4 — Text Reveal (2.6–3.4s)**
+"Fahad Al Noman" fades in letter-by-letter with a subtle upward slide, using a modern sans-serif style (Inter/system font, extra-light weight for "Al Noman", bold gradient for "Fahad").
+
+**Phase 5 — Fade Out (3.6–4.2s)**
+Entire loader fades to transparent, revealing the page beneath.
+
+## Technical Approach
+
+### `src/components/Loader.tsx`
+- Use the existing `fahad-loader.png` image
+- Create 9 segments (3x3 grid) using `motion.div` elements, each with `clip-path: inset(...)` on a background-image of the portrait
+- Each segment has unique `initial` position (randomized offsets), animates to `{ x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }` with staggered delays
+- Floating particles: 6-8 small `motion.div` circles that converge toward center
+- Text uses `motion.span` per character for letter-by-letter fade-in
+- Background stays `#0B0F19` to match the site theme
+- Final container uses `framer-motion` exit animation
+
+### `src/index.css`
+- Remove the old `loader-stroke-anim` and `draw-stroke` keyframes (no longer needed)
+- Add a subtle `@keyframes loader-glow` for the pulsing glow effect around the portrait
 
 ## Files Modified
-- `src/assets/fahad-profile.png` — Replace with uploaded image
-- `src/components/Loader.tsx` — New SVG animation loader
-- `src/index.css` — Add draw-stroke keyframes
+- `src/components/Loader.tsx` — Complete rewrite with multi-phase animation
+- `src/index.css` — Replace old loader keyframes with new glow keyframe
 
