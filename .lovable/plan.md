@@ -1,56 +1,106 @@
 
 
-# Portfolio Updates Plan
+# Portfolio Upgrade: Profile Image, Loader Update, and Individual Section Pages
 
-## Changes
+## Overview
+Three major changes: replace the placeholder profile image with the uploaded photo, update the loader to show both "ZURVIX" and "Fahad AL Noman", and convert all nav sections into dedicated routed pages with expanded content and mobile-first design.
 
-### 1. Fix WhatsApp Link
-Update all WhatsApp links from `https://wa.me/8801601345600` to `https://wa.me/+8801601345600` in HeroSection, Navbar, ContactSection, and data.ts.
+---
 
-### 2. Navbar Brand Text
-Change "ZURVIX" to "Fahad AL Noman" in the Navbar header. Add "Blog" to nav links.
+## 1. Replace Profile Image
+- Copy the uploaded image (`user-uploads://download_2_0.png`) to `src/assets/fahad-profile.png`, replacing the existing placeholder.
 
-### 3. Fix Social Links in Contact Section
-Ensure all social links in data.ts are correct and clickable. Verify icon mapping covers all entries.
+## 2. Update Loader
+- Modify `Loader.tsx` to show "ZURVIX" as the main title and "Fahad AL Noman" as a subtitle below the gradient line.
 
-### 4. Footer — Clickable ZURVIX Link
-Make "ZURVIX" in the footer a clickable link to `https://zurvix.com`.
+## 3. Convert Sections to Individual Pages
+Currently everything is on a single-page scroll. Each nav item will become its own route with a full dedicated page.
 
-### 5. Contact Form — Email via EmailJS or Web3Forms
-Replace the WhatsApp redirect on form submit with an actual email delivery service. Will use Web3Forms (free, no signup needed for basic usage) to send form submissions to `fahadnomanofficial@gmail.com`.
+**New route structure:**
+- `/` — Home (Hero section only + brief highlights)
+- `/about` — Full About page (profile, bio, education, experience, location)
+- `/skills` — Skills page (skill bars + tech stack + tools section expanded)
+- `/work` — Portfolio page (projects with both tabs + more detail)
+- `/services` — Services page (service cards + process/workflow section)
+- `/blog` — Blog page (category filters + all posts with more content)
+- `/contact` — Contact page (form + social links + map/location info)
 
-### 6. Add Blog Section
-Create a new `BlogSection` component with:
-- Blog category filter tabs
-- Sample blog post cards with glass effect
-- Each card shows title, category, excerpt, date, and a "Read More" link
-- Placeholder content that can be replaced with real posts later
+**Each page will include:**
+- Shared `Navbar` and `Footer`
+- `ParticlesBackground`
+- Page-specific expanded content with more data and sections
+- Smooth page transitions via framer-motion
 
-### 7. Add Profile Image
-Copy the uploaded photo into `src/assets/` and display it in the Hero or About section with a glass-effect frame, sized appropriately (not full-size).
+## 4. Navbar Updates
+- Change nav links from `#section` anchors to React Router `<Link>` components pointing to `/about`, `/skills`, `/work`, `/services`, `/blog`, `/contact`.
+- Mobile hamburger menu: improve with full-screen glass overlay, larger touch targets (min 48px), and smooth open/close animation.
+- Highlight active route.
 
-### 8. Add Location Info
-Display current location (Dhaka, Bangladesh) and permanent address (Jhenaidah, Khulna, Bangladesh) in the About section with map pin icons.
+## 5. Mobile-Friendly Improvements (All Pages)
+- All grids collapse to single column on mobile.
+- Larger tap targets (48px minimum) on all buttons and links.
+- Increased font sizes on mobile for readability.
+- Bottom padding on mobile to avoid content being cut off.
+- Mobile nav drawer: full-screen overlay with large links, smooth slide animation.
+- Cards stack vertically with proper spacing on small screens.
+- Form inputs sized for comfortable mobile typing.
 
-### 9. Redesign Education & Experience in About Section
-Replace the current compact list with a more detailed, visually appealing layout:
-- **HSC** — Business Studies, Jabeda Sarwoar Computer and Commerce College
-- **Diploma** — CSE, Daffodil Polytechnic Institute
-- **BA** — Economics, Times University, Bangladesh
-- **Work** — Web Developer @ Sail Technology (2021–Present)
+## 6. Expanded Page Content
 
-Each entry gets its own glass card with institution name, degree, and year/status.
+**About Page:**
+- Full profile image with glass frame (larger on desktop).
+- Detailed bio paragraph.
+- Education cards with institution details.
+- Work experience timeline.
+- Location info with icons.
+- Personal interests/hobbies section.
 
-## Files Modified
-- `src/lib/data.ts` — WhatsApp URL fix, blog data
-- `src/components/Navbar.tsx` — Brand text, blog nav link
-- `src/components/HeroSection.tsx` — WhatsApp link, profile image
-- `src/components/AboutSection.tsx` — Education detail, location, image
-- `src/components/ContactSection.tsx` — Email form integration
-- `src/components/Footer.tsx` — Clickable ZURVIX link
-- `src/components/BlogSection.tsx` — New component
-- `src/pages/Index.tsx` — Add BlogSection
+**Skills Page:**
+- Animated skill bars (existing).
+- Tech stack grid with icons.
+- Tools and software section.
+- Certifications or learning highlights.
 
-## Dependencies
-- Will add `@web3forms/react` or use fetch API to Web3Forms endpoint for email delivery (no API key needed for access key approach — will need a Web3Forms access key or alternative).
+**Work/Portfolio Page:**
+- Featured and Bangladesh project tabs (existing).
+- Larger project cards with descriptions.
+- Project count stats.
+
+**Services Page:**
+- Service cards (existing) with expanded descriptions.
+- Work process/methodology section (Discovery, Design, Develop, Deploy).
+- CTA to contact.
+
+**Blog Page:**
+- Category filter tabs (existing).
+- Blog cards with more visual hierarchy.
+- Featured/pinned post at top.
+
+**Contact Page:**
+- Contact form (existing).
+- Social links (existing).
+- Address and location details.
+- Availability status indicator.
+- Direct WhatsApp and email buttons.
+
+---
+
+## Files to Create
+- `src/pages/AboutPage.tsx`
+- `src/pages/SkillsPage.tsx`
+- `src/pages/WorkPage.tsx`
+- `src/pages/ServicesPage.tsx`
+- `src/pages/BlogPage.tsx`
+- `src/pages/ContactPage.tsx`
+- `src/components/PageLayout.tsx` (shared layout: navbar + particles + footer)
+
+## Files to Modify
+- `src/assets/fahad-profile.png` — Replace with uploaded image
+- `src/components/Loader.tsx` — Add "Fahad AL Noman" subtitle
+- `src/components/Navbar.tsx` — Router links, active state, improved mobile menu
+- `src/App.tsx` — Add all new routes
+- `src/pages/Index.tsx` — Simplify to Hero + brief highlights with links to pages
+
+## No New Dependencies
+All features use existing `framer-motion`, `react-router-dom`, `lucide-react`, and Tailwind CSS.
 
