@@ -1,16 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Loader from "@/components/Loader";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
+import SkillsSection from "@/components/SkillsSection";
+import PortfolioSection from "@/components/PortfolioSection";
+import ServicesSection from "@/components/ServicesSection";
+import WhyChooseSection from "@/components/WhyChooseSection";
+import TechStackSection from "@/components/TechStackSection";
+import TimelineSection from "@/components/TimelineSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
+import ParticlesBackground from "@/components/ParticlesBackground";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <>
+      {!loaded && <Loader onComplete={() => setLoaded(true)} />}
+      <div className={`relative bg-grid ${loaded ? "" : "opacity-0"}`}>
+        <ParticlesBackground />
+        <Navbar />
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <PortfolioSection />
+        <ServicesSection />
+        <WhyChooseSection />
+        <TechStackSection />
+        <TimelineSection />
+        <ContactSection />
+        <Footer />
+      </div>
+    </>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
