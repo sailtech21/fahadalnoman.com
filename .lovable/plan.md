@@ -1,50 +1,43 @@
 
 
-# Elegant Loading Animation with Animated Portrait Assembly
+# Sophisticated Portrait Drawing Loader Animation
 
 ## Overview
-Replace the current loader with a sophisticated multi-phase animation where the portrait image assembles from fragmented pieces (slices that slide, scale, and fade into place), followed by a smooth text reveal of "Fahad Al Noman".
+Rewrite the Loader component with a three-phase animation sequence that simulates a portrait being "sketched into existence" before the real image is revealed, followed by a smooth name text fade-in.
 
-## Animation Sequence (Total ~4s)
+## Animation Sequence (~4.5s total)
 
-**Phase 1 — Particle Shimmer (0–0.5s)**
-Floating cyan/purple particles converge toward the center, establishing visual focus.
+### Phase 1 — Sketch Drawing (~1.5s)
+- SVG path strokes animate via `pathLength` to simulate hand-drawing lines around a face/portrait shape (outline, features, shoulders)
+- Paths use the site's gradient colors (cyan to purple to pink)
+- Lines draw in with staggered delays, giving a natural sketch feel
 
-**Phase 2 — Portrait Assembly (0.3–2.2s)**
-The portrait image is split into a grid of segments (using CSS `clip-path` on multiple copies of the image). Each segment:
-- Starts scattered (random offset + rotation + scale 0)
-- Animates to its correct position with staggered timing
-- Uses `easeInOut` cubic bezier for smooth motion
+### Phase 2 — Portrait Reveal (~1.4s)
+- Sketch strokes fade out as the real PNG portrait is revealed
+- Reveal uses an expanding radial `clip-path` (`circle(0%)` to `circle(75%)`), creating an "unveiling from center" effect
+- A shimmer sweep passes over the portrait once revealed
+- A gradient border trace fades in around the portrait frame
 
-Segments assemble from outside inward, creating a "pieces falling into place" effect.
+### Phase 3 — Text Fade-In (~0.8s)
+- "Fahad Al Noman" appears letter-by-letter with blur-to-sharp + slide-up animation
+- "Fahad" in gradient bold, "Al Noman" in light foreground color
+- A decorative gradient line expands below the name
+- After a brief hold, the entire loader fades out
 
-**Phase 3 — Glow + Border (2.0–2.8s)**
-Once the portrait is complete:
-- A soft cyan glow radiates outward
-- A thin gradient border traces around the portrait silhouette
+## Technical Details
 
-**Phase 4 — Text Reveal (2.6–3.4s)**
-"Fahad Al Noman" fades in letter-by-letter with a subtle upward slide, using a modern sans-serif style (Inter/system font, extra-light weight for "Al Noman", bold gradient for "Fahad").
+### File: `src/components/Loader.tsx` — Full rewrite
+- State machine with phases: `sketching` → `revealing` → `text` → `done`
+- Uses `framer-motion` for all animations (already installed)
+- SVG sketch lines use `motion.path` with `pathLength` animation
+- Portrait revealed via CSS `clip-path: circle()` animated through framer-motion
+- Shimmer effect: a gradient div sweeping across via `translateX`
+- Text uses `filter: blur()` transition for a polished defocus-to-focus effect
+- Background remains `#0B0F19` matching the site theme
+- Transparent-ready: no extra background elements beyond the main container
+- Uses existing `profileImg` from `@/assets/fahad-loader.png`
 
-**Phase 5 — Fade Out (3.6–4.2s)**
-Entire loader fades to transparent, revealing the page beneath.
-
-## Technical Approach
-
-### `src/components/Loader.tsx`
-- Use the existing `fahad-loader.png` image
-- Create 9 segments (3x3 grid) using `motion.div` elements, each with `clip-path: inset(...)` on a background-image of the portrait
-- Each segment has unique `initial` position (randomized offsets), animates to `{ x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }` with staggered delays
-- Floating particles: 6-8 small `motion.div` circles that converge toward center
-- Text uses `motion.span` per character for letter-by-letter fade-in
-- Background stays `#0B0F19` to match the site theme
-- Final container uses `framer-motion` exit animation
-
-### `src/index.css`
-- Remove the old `loader-stroke-anim` and `draw-stroke` keyframes (no longer needed)
-- Add a subtle `@keyframes loader-glow` for the pulsing glow effect around the portrait
-
-## Files Modified
-- `src/components/Loader.tsx` — Complete rewrite with multi-phase animation
-- `src/index.css` — Replace old loader keyframes with new glow keyframe
+### No other files need changes
+- The existing `loader-border-trace` utility in `index.css` will be replicated inline
+- The component API (`onComplete` prop) stays identical
 
