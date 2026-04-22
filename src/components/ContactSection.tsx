@@ -14,7 +14,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
@@ -30,6 +30,8 @@ const ContactSection = () => {
           access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
           name: form.name,
           email: form.email,
+          phone: `${form.countryCode}${form.phone}`,
+          whatsapp_available: form.whatsappAvailable,
           message: form.message,
           to: "fahadnomanofficial@gmail.com",
           subject: `Portfolio Contact from ${form.name}`,
@@ -39,7 +41,7 @@ const ContactSection = () => {
       const data = await res.json();
       if (data.success) {
         toast({ title: "Message sent!", description: "I'll get back to you soon." });
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
       } else {
         toast({ title: "Failed to send", description: "Please try again or contact via WhatsApp.", variant: "destructive" });
       }
