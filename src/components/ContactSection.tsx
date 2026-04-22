@@ -135,6 +135,7 @@ const ContactSection = () => {
               <MessageCircle size={14} className="text-green-400" />
               Available on WhatsApp
             </label>
+            <textarea
               placeholder="Tell me about your project..."
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
