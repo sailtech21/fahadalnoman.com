@@ -95,33 +95,37 @@ const HeroSection = () => {
               <span className="text-xs text-muted-foreground ml-2 font-mono">fahad.ts</span>
             </div>
             <div className="p-6 font-mono text-sm space-y-1 min-h-[280px]">
-              {displayedLines.map((line, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="flex gap-4"
-                >
-                  <span className="text-muted-foreground/50 select-none w-6 text-right">{i + 1}</span>
-                  <span>
-                    {line.includes("const") && (
-                      <>
-                        <span className="text-purple-400">const </span>
-                        <span className="text-foreground">{line.split("const ")[1].split(" =")[0]}</span>
-                        <span className="text-muted-foreground"> = </span>
-                        <span className="text-green-400">{line.split("= ")[1]}</span>
-                      </>
-                    )}
-                    {line.startsWith("//") && <span className="text-muted-foreground/60">{line}</span>}
-                    {line.includes("startProject") && (
-                      <span className="text-primary">{line}</span>
-                    )}
-                    {!line.includes("const") && !line.startsWith("//") && !line.includes("startProject") && (
-                      <span className="text-muted-foreground/40">{line}</span>
-                    )}
-                  </span>
-                </motion.div>
-              ))}
+              {displayedLines.map((line, i) => {
+                if (!line && line !== "") return null;
+                const isConst = typeof line === "string" && line.includes("const");
+                const isComment = typeof line === "string" && line.startsWith("//");
+                const isStart = typeof line === "string" && line.includes("startProject");
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="flex gap-4"
+                  >
+                    <span className="text-muted-foreground/50 select-none w-6 text-right">{i + 1}</span>
+                    <span>
+                      {isConst && (
+                        <>
+                          <span className="text-purple-400">const </span>
+                          <span className="text-foreground">{line.split("const ")[1]?.split(" =")[0]}</span>
+                          <span className="text-muted-foreground"> = </span>
+                          <span className="text-green-400">{line.split("= ")[1] ?? ""}</span>
+                        </>
+                      )}
+                      {isComment && <span className="text-muted-foreground/60">{line}</span>}
+                      {isStart && <span className="text-primary">{line}</span>}
+                      {!isConst && !isComment && !isStart && (
+                        <span className="text-muted-foreground/40">{line}</span>
+                      )}
+                    </span>
+                  </motion.div>
+                );
+              })}
               <motion.span
                 className="inline-block w-2 h-5 bg-primary ml-10"
                 animate={{ opacity: [1, 0] }}
