@@ -105,9 +105,10 @@ const Navbar = () => {
             <div className="relative z-10 flex flex-col h-full">
               {/* Header */}
               <div className="px-4 py-3 flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-                  <img src={logoImg} alt="Logo" className="h-8 w-auto" />
-                  <span className="text-xl font-bold text-gradient">Fahad Al Noman</span>
+                <Link to="/" className="flex items-center gap-1" onClick={() => setOpen(false)}>
+                  <span className="text-2xl font-extrabold tracking-tight text-gradient">
+                    Fahad<span className="text-foreground font-light ml-1.5">Al Noman</span>
+                  </span>
                 </Link>
                 <button
                   className="text-foreground p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
