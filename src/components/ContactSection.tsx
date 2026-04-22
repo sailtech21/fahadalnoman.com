@@ -98,7 +98,43 @@ const ContactSection = () => {
               className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 transition-colors text-sm"
               required
             />
-            <textarea
+            {/* Phone Number */}
+            <div className="flex gap-2">
+              <select
+                value={form.countryCode}
+                onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
+                className="w-24 px-2 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors"
+              >
+                <option value="+880">+880 🇧🇩</option>
+                <option value="+1">+1 🇺🇸</option>
+                <option value="+44">+44 🇬🇧</option>
+                <option value="+91">+91 🇮🇳</option>
+                <option value="+61">+61 🇦🇺</option>
+                <option value="+971">+971 🇦🇪</option>
+                <option value="+966">+966 🇸🇦</option>
+                <option value="+49">+49 🇩🇪</option>
+                <option value="+33">+33 🇫🇷</option>
+                <option value="+81">+81 🇯🇵</option>
+              </select>
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="flex-1 px-4 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 transition-colors text-sm"
+              />
+            </div>
+            {/* WhatsApp checkbox */}
+            <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.whatsappAvailable}
+                onChange={(e) => setForm({ ...form, whatsappAvailable: e.target.checked })}
+                className="w-4 h-4 rounded border-border/50 accent-green-500"
+              />
+              <MessageCircle size={14} className="text-green-400" />
+              Available on WhatsApp
+            </label>
               placeholder="Tell me about your project..."
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
