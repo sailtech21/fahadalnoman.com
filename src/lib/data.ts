@@ -59,7 +59,7 @@ export const socialLinks = [
 
 export const education = [
   {
-    degree: "BA in Economics",
+    degree: "BSc in C.S.E",
     institution: "Times University, Bangladesh",
     status: "Completed",
     icon: "graduation",
