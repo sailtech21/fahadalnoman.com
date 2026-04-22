@@ -7,7 +7,7 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
       style={{ background: "#0B0F19" }}
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 0.6, delay: 2 }}
+      transition={{ duration: 0.6, delay: 2.5 }}
       onAnimationComplete={onComplete}
     >
       <motion.div className="text-center">
@@ -26,10 +26,18 @@ const Loader = ({ onComplete }: { onComplete: () => void }) => {
           transition={{ duration: 1, delay: 0.5 }}
         />
         <motion.p
-          className="text-muted-foreground mt-3 text-sm tracking-widest uppercase"
+          className="text-foreground mt-4 text-lg md:text-xl font-semibold tracking-wide"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+        >
+          Fahad AL Noman
+        </motion.p>
+        <motion.p
+          className="text-muted-foreground mt-2 text-xs tracking-widest uppercase"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 1.6 }}
         >
           Loading Experience...
         </motion.p>
