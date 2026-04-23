@@ -8,9 +8,10 @@ import { Clock, ArrowRight, Tag } from "lucide-react";
 const BlogSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filtered = activeCategory === "All"
+  const filtered = (activeCategory === "All"
     ? blogPosts
-    : blogPosts.filter((p) => p.category === activeCategory);
+    : blogPosts.filter((p) => p.category === activeCategory)
+  ).slice(0, 3);
 
   return (
     <SectionWrapper id="blog" title="My |Blog" subtitle="Insights, tutorials, and stories from my journey as a developer.">
