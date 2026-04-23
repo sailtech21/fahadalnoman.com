@@ -114,8 +114,10 @@ export type BlogPost = {
   excerpt: string;
   category: string;
   date: string;
+  isoDate: string;
   readTime: string;
   cover: string;
+  tags?: string[];
   content: BlogBlock[];
 };
 
