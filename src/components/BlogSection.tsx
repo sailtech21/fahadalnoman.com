@@ -43,8 +43,21 @@ const BlogSection = () => {
           >
             <Link
               to={`/blog/${post.slug}`}
-              className="glass-strong rounded-2xl p-6 hover:glow-cyan transition-all group cursor-pointer flex flex-col h-full"
+              className="glass-strong rounded-2xl overflow-hidden hover:glow-cyan transition-all group cursor-pointer flex flex-col h-full"
             >
+              {post.cover && (
+                <div className="aspect-[16/9] overflow-hidden">
+                  <img
+                    src={post.cover}
+                    alt={post.title}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              )}
+              <div className="p-6 flex flex-col flex-1">
               {/* Category Tag */}
               <div className="flex items-center gap-2 mb-3">
                 <Tag size={12} className="text-secondary" />
@@ -72,6 +85,7 @@ const BlogSection = () => {
                 <div className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                   Read <ArrowRight size={14} />
                 </div>
+              </div>
               </div>
             </Link>
           </motion.div>
