@@ -4,6 +4,7 @@ import { socialLinks } from "@/lib/data";
 import { Facebook, Instagram, Linkedin, Mail, MessageCircle, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const iconMap: Record<string, React.ReactNode> = {
   facebook: <Facebook size={20} />,
@@ -23,30 +24,29 @@ const ContactSection = () => {
     setSending(true);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
           name: form.name,
           email: form.email,
-          phone: `${form.countryCode}${form.phone}`,
-          whatsapp_available: form.whatsappAvailable,
+          phone: form.phone ? `${form.countryCode}${form.phone}` : "",
+          whatsappAvailable: form.whatsappAvailable,
           message: form.message,
-          to: "fahadnomanofficial@gmail.com",
-          subject: `Portfolio Contact from ${form.name}`,
-        }),
+        },
       });
 
-      const data = await res.json();
-      if (data.success) {
+      if (error) throw error;
+      if (data?.success) {
         toast({ title: "Message sent!", description: "I'll get back to you soon." });
         setForm({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
       } else {
-        toast({ title: "Failed to send", description: "Please try again or contact via WhatsApp.", variant: "destructive" });
+        throw new Error(data?.error || "Failed to send");
       }
-    } catch {
-      toast({ title: "Error", description: "Something went wrong. Please try WhatsApp instead.", variant: "destructive" });
+    } catch (err) {
+      toast({
+        title: "Failed to send",
+        description: (err as Error).message || "Please try WhatsApp instead.",
+        variant: "destructive",
+      });
     } finally {
       setSending(false);
     }
