@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import { blogPosts, blogCategories } from "@/lib/data";
@@ -33,43 +34,47 @@ const BlogSection = () => {
       {/* Blog Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((post, i) => (
-          <motion.article
-            key={post.title}
+          <motion.div
+            key={post.slug}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="glass-strong rounded-2xl p-6 hover:glow-cyan transition-all group cursor-pointer flex flex-col"
           >
-            {/* Category Tag */}
-            <div className="flex items-center gap-2 mb-3">
-              <Tag size={12} className="text-secondary" />
-              <span className="text-xs font-mono text-secondary">{post.category}</span>
-            </div>
-
-            {/* Title */}
-            <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
-              {post.title}
-            </h3>
-
-            {/* Excerpt */}
-            <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3 flex-1">
-              {post.excerpt}
-            </p>
-
-            {/* Footer */}
-            <div className="flex items-center justify-between pt-3 border-t border-border/30">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Clock size={12} />
-                <span>{post.readTime}</span>
-                <span className="mx-1">•</span>
-                <span>{post.date}</span>
+            <Link
+              to={`/blog/${post.slug}`}
+              className="glass-strong rounded-2xl p-6 hover:glow-cyan transition-all group cursor-pointer flex flex-col h-full"
+            >
+              {/* Category Tag */}
+              <div className="flex items-center gap-2 mb-3">
+                <Tag size={12} className="text-secondary" />
+                <span className="text-xs font-mono text-secondary">{post.category}</span>
               </div>
-              <div className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                Read <ArrowRight size={14} />
+
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                {post.title}
+              </h3>
+
+              {/* Excerpt */}
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3 flex-1">
+                {post.excerpt}
+              </p>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between pt-3 border-t border-border/30">
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Clock size={12} />
+                  <span>{post.readTime}</span>
+                  <span className="mx-1">•</span>
+                  <span>{post.date}</span>
+                </div>
+                <div className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Read <ArrowRight size={14} />
+                </div>
               </div>
-            </div>
-          </motion.article>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </SectionWrapper>
