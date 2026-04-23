@@ -70,21 +70,60 @@ const BlogDetail = () => {
             <span className="text-gradient">{post.title}</span>
           </h1>
 
+          {post.cover && (
+            <div className="rounded-2xl overflow-hidden mb-8 glass-strong">
+              <img
+                src={post.cover}
+                alt={post.title}
+                width={1280}
+                height={720}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
+
           <p className="text-lg text-muted-foreground leading-relaxed mb-10 border-l-2 border-primary/40 pl-4">
             {post.excerpt}
           </p>
 
           <div className="space-y-6 text-base md:text-lg leading-relaxed text-foreground/90">
-            {post.content?.map((paragraph, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.05 }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
+            {post.content?.map((block, i) => {
+              if (block.type === "image") {
+                return (
+                  <motion.figure
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.05 }}
+                    className="my-8 rounded-2xl overflow-hidden glass-strong"
+                  >
+                    <img
+                      src={block.src}
+                      alt={block.alt}
+                      width={1280}
+                      height={720}
+                      loading="lazy"
+                      className="w-full h-auto object-cover"
+                    />
+                    {block.alt && (
+                      <figcaption className="text-xs text-muted-foreground text-center py-2 px-4">
+                        {block.alt}
+                      </figcaption>
+                    )}
+                  </motion.figure>
+                );
+              }
+              return (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                >
+                  {block.text}
+                </motion.p>
+              );
+            })}
           </div>
 
           {/* Author card */}

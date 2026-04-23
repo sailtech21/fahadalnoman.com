@@ -25,20 +25,34 @@ const BlogPage = () => {
         >
           <Link
             to={`/blog/${featured.slug}`}
-            className="glass-strong rounded-2xl p-6 md:p-8 mb-10 glow-cyan cursor-pointer group block"
+            className="glass-strong rounded-2xl overflow-hidden mb-10 glow-cyan cursor-pointer group block"
           >
-            <div className="flex items-center gap-2 mb-3">
-              <BookOpen size={16} className="text-primary" />
-              <span className="text-xs font-mono text-primary uppercase tracking-wider">Featured Post</span>
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">
-              {featured.title}
-            </h3>
-            <p className="text-muted-foreground leading-relaxed mb-4">{featured.excerpt}</p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1"><Tag size={12} className="text-secondary" />{featured.category}</span>
-              <span className="flex items-center gap-1"><Clock size={12} />{featured.readTime}</span>
-              <span>{featured.date}</span>
+            {featured.cover && (
+              <div className="aspect-[16/7] overflow-hidden">
+                <img
+                  src={featured.cover}
+                  alt={featured.title}
+                  width={1280}
+                  height={560}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen size={16} className="text-primary" />
+                <span className="text-xs font-mono text-primary uppercase tracking-wider">Featured Post</span>
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">
+                {featured.title}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">{featured.excerpt}</p>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1"><Tag size={12} className="text-secondary" />{featured.category}</span>
+                <span className="flex items-center gap-1"><Clock size={12} />{featured.readTime}</span>
+                <span>{featured.date}</span>
+              </div>
             </div>
           </Link>
         </motion.div>
@@ -72,8 +86,21 @@ const BlogPage = () => {
             >
               <Link
                 to={`/blog/${post.slug}`}
-                className="glass-strong rounded-2xl p-5 md:p-6 hover:glow-cyan transition-all group cursor-pointer flex flex-col h-full"
+                className="glass-strong rounded-2xl overflow-hidden hover:glow-cyan transition-all group cursor-pointer flex flex-col h-full"
               >
+                {post.cover && (
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={post.cover}
+                      alt={post.title}
+                      width={1280}
+                      height={720}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                <div className="p-5 md:p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3">
                   <Tag size={12} className="text-secondary" />
                   <span className="text-xs font-mono text-secondary">{post.category}</span>
@@ -94,6 +121,7 @@ const BlogPage = () => {
                   <div className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                     Read <ArrowRight size={14} />
                   </div>
+                </div>
                 </div>
               </Link>
             </motion.div>
