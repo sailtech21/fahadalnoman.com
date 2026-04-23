@@ -1,4 +1,5 @@
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import SectionWrapper from "@/components/SectionWrapper";
 import { GraduationCap, Briefcase, MapPin, BookOpen, Code, Building2, Heart, Coffee, Gamepad2, Globe } from "lucide-react";
 import { motion } from "framer-motion";
