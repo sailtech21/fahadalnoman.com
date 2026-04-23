@@ -23,7 +23,34 @@ const processSteps = [
 
 const ServicesPage = () => (
   <PageLayout>
-    <SEO title="Web Development Services | Fahad Al Noman" description="Hire Fahad Al Noman for full stack web development, e-commerce, custom web apps, server setup, and AI integration services." path="/services" />
+    <SEO
+      title="Web Development Services | Fahad Al Noman"
+      description="Hire Fahad Al Noman for full stack web development, e-commerce, custom web apps, server setup, and AI integration services."
+      path="/services"
+      keywords="hire web developer, full stack development services, e-commerce development, Laravel development, React development, server setup, AI integration"
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Full Stack Web Development",
+          provider: { "@type": "Person", name: "Fahad Al Noman", url: "https://fahadalnoman.com" },
+          areaServed: "Worldwide",
+          description: "Custom websites, web applications, e-commerce, server setup, and AI integration.",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Services Offered",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Website Development" },
+            { "@type": "ListItem", position: 2, name: "Web Application Development" },
+            { "@type": "ListItem", position: 3, name: "E-commerce Solutions" },
+            { "@type": "ListItem", position: 4, name: "Server Setup & Deployment" },
+            { "@type": "ListItem", position: 5, name: "AI Integration" },
+          ],
+        },
+      ]}
+    />
     <SectionWrapper id="services" title="Services I |Offer" subtitle="End-to-end solutions from concept to deployment.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16">
         {services.map((s, i) => (

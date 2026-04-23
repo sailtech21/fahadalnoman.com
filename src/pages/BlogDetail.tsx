@@ -40,6 +40,49 @@ const BlogDetail = () => {
     .filter((p) => p.slug !== post.slug && p.category === post.category)
     .slice(0, 3);
 
+  const SITE_URL = "https://fahadalnoman.com";
+  const articleBody = post.content
+    .filter((b) => b.type === "paragraph")
+    .map((b) => (b as { text: string }).text)
+    .join("\n\n");
+  const wordCount = articleBody.split(/\s+/).length;
+  const keywords = [post.category, ...(post.tags ?? []), "Fahad Al Noman", "Web Development"].join(", ");
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: [post.cover.startsWith("http") ? post.cover : `${SITE_URL}${post.cover}`],
+    datePublished: post.isoDate,
+    dateModified: post.isoDate,
+    author: {
+      "@type": "Person",
+      name: "Fahad Al Noman",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Fahad Al Noman",
+      url: SITE_URL,
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.slug}` },
+    articleSection: post.category,
+    keywords,
+    wordCount,
+    inLanguage: "en",
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
+    ],
+  };
+
   return (
     <PageLayout>
       <SEO
@@ -48,6 +91,8 @@ const BlogDetail = () => {
         path={`/blog/${post.slug}`}
         type="article"
         image={post.cover}
+        keywords={keywords}
+        jsonLd={[articleLd, breadcrumbLd]}
       />
       <article className="max-w-3xl mx-auto px-6 pt-28 pb-20">
         <motion.div

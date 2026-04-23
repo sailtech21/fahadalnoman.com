@@ -15,9 +15,32 @@ const BlogPage = () => {
 
   const featured = blogPosts[0];
 
+  const SITE_URL = "https://fahadalnoman.com";
+  const blogLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Fahad Al Noman Blog",
+    url: `${SITE_URL}/blog`,
+    description: "Insights, tutorials, and stories on Laravel, React, AI, e-commerce, and DevOps.",
+    blogPost: blogPosts.map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.title,
+      url: `${SITE_URL}/blog/${p.slug}`,
+      datePublished: p.isoDate,
+      image: p.cover.startsWith("http") ? p.cover : `${SITE_URL}${p.cover}`,
+      author: { "@type": "Person", name: "Fahad Al Noman" },
+    })),
+  };
+
   return (
     <PageLayout>
-      <SEO title="Blog | Fahad Al Noman" description="Insights, tutorials, and stories from Fahad Al Noman on Laravel, React, AI, e-commerce, DevOps and more." path="/blog" />
+      <SEO
+        title="Blog | Fahad Al Noman — Web Development Insights"
+        description="Insights, tutorials, and stories from Fahad Al Noman on Laravel, React, AI, e-commerce, DevOps and more."
+        path="/blog"
+        keywords="Fahad Al Noman blog, Laravel tutorials, React tutorials, web development blog, AI in web development, DevOps guides"
+        jsonLd={blogLd}
+      />
       <SectionWrapper id="blog" title="My |Blog" subtitle="Insights, tutorials, and stories from my journey as a developer.">
         {/* Featured Post */}
         <motion.div

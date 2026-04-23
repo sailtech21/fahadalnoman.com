@@ -41,7 +41,19 @@ const WorkPage = () => {
 
   return (
     <PageLayout>
-      <SEO title="Portfolio & Projects | Fahad Al Noman" description="Explore selected projects and Bangladesh work by Fahad Al Noman — modern web apps built with React, Laravel and more." path="/work" />
+      <SEO
+        title="Portfolio & Projects | Fahad Al Noman"
+        description="Explore selected projects and Bangladesh work by Fahad Al Noman — modern web apps built with React, Laravel and more."
+        path="/work"
+        keywords="Fahad Al Noman portfolio, web developer projects, React projects, Laravel projects, Bangladesh web developer work"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Portfolio & Projects",
+          url: "https://fahadalnoman.com/work",
+          about: "Web development projects by Fahad Al Noman",
+        }}
+      />
       <SectionWrapper id="work" title="My |Work" subtitle="A selection of projects I've built for clients worldwide.">
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto mb-10">

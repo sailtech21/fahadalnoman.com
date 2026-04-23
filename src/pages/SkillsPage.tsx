@@ -59,7 +59,12 @@ const additionalSkills = [
 
 const SkillsPage = () => (
   <PageLayout>
-    <SEO title="Skills | Fahad Al Noman" description="Technical skills of Fahad Al Noman: React, Laravel, Node.js, PHP, MySQL, DevOps, AI tools and more." path="/skills" />
+    <SEO
+      title="Skills & Tech Stack | Fahad Al Noman"
+      description="Technical skills of Fahad Al Noman: React, Laravel, Node.js, PHP, MySQL, DevOps, AI tools and more."
+      path="/skills"
+      keywords="Fahad Al Noman skills, React, Laravel, Node.js, PHP, MySQL, DevOps, REST API, CI/CD"
+    />
       <SectionWrapper id="skills" title="Skills & |Expertise" subtitle="Technologies I work with daily to build exceptional products.">
       {/* Core Skills */}
       <div className="max-w-3xl mx-auto glass-strong rounded-2xl p-6 md:p-8 glow-purple space-y-6 mb-12">
