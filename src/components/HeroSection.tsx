@@ -51,7 +51,7 @@ const HeroSection = () => {
             <span className="text-gradient">Fahad Al Noman</span>
           </h1>
           <p className="text-xl md:text-2xl text-secondary font-medium mb-4">
-            CEO & Founder of ZURVIX
+            Full Stack Web Developer
           </p>
           <p className="text-muted-foreground text-lg max-w-lg mb-8 leading-relaxed">
             I build high-performance websites & scalable apps for modern businesses 🚀
