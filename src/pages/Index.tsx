@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SEO from "@/components/SEO";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -19,6 +20,11 @@ const Index = () => {
 
   return (
     <>
+      <SEO
+        title="Fahad Al Noman | Full Stack Web Developer Portfolio"
+        description="Fahad Al Noman — Full Stack Web Developer building fast, scalable websites & web apps with React, Laravel, and modern tech. View portfolio & hire today."
+        path="/"
+      />
       {!loaded && <Loader onComplete={() => setLoaded(true)} />}
       <div className={`relative bg-grid ${loaded ? "" : "opacity-0"}`}>
         <ParticlesBackground />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import SectionWrapper from "@/components/SectionWrapper";
 import { motion } from "framer-motion";
 import { blogPosts, blogCategories } from "@/lib/data";
@@ -16,6 +17,7 @@ const BlogPage = () => {
 
   return (
     <PageLayout>
+      <SEO title="Blog | Fahad Al Noman" description="Insights, tutorials, and stories from Fahad Al Noman on Laravel, React, AI, e-commerce, DevOps and more." path="/blog" />
       <SectionWrapper id="blog" title="My |Blog" subtitle="Insights, tutorials, and stories from my journey as a developer.">
         {/* Featured Post */}
         <motion.div

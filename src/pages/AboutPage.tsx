@@ -1,4 +1,5 @@
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import SectionWrapper from "@/components/SectionWrapper";
 import { GraduationCap, Briefcase, MapPin, BookOpen, Code, Building2, Heart, Coffee, Gamepad2, Globe } from "lucide-react";
 import { motion } from "framer-motion";
@@ -20,6 +21,11 @@ const interests = [
 
 const AboutPage = () => (
   <PageLayout>
+    <SEO
+      title="About Fahad Al Noman | Full Stack Web Developer"
+      description="Learn about Fahad Al Noman, a Full Stack Web Developer from Bangladesh specializing in React, Laravel, and scalable web applications."
+      path="/about"
+    />
     <SectionWrapper id="about" title="About |Me" subtitle="From a small town to building digital solutions for the world.">
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Profile & Info */}

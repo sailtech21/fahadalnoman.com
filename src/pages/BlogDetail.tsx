@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import { blogPosts } from "@/lib/data";
 import { ArrowLeft, ArrowRight, Clock, Tag, Calendar } from "lucide-react";
 import { useEffect } from "react";
@@ -41,6 +42,13 @@ const BlogDetail = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title={`${post.title} | Fahad Al Noman Blog`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        image={post.cover}
+      />
       <article className="max-w-3xl mx-auto px-6 pt-28 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

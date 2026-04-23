@@ -1,4 +1,5 @@
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import SectionWrapper from "@/components/SectionWrapper";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -58,7 +59,8 @@ const additionalSkills = [
 
 const SkillsPage = () => (
   <PageLayout>
-    <SectionWrapper id="skills" title="Skills & |Expertise" subtitle="Technologies I work with daily to build exceptional products.">
+    <SEO title="Skills | Fahad Al Noman" description="Technical skills of Fahad Al Noman: React, Laravel, Node.js, PHP, MySQL, DevOps, AI tools and more." path="/skills" />
+      <SectionWrapper id="skills" title="Skills & |Expertise" subtitle="Technologies I work with daily to build exceptional products.">
       {/* Core Skills */}
       <div className="max-w-3xl mx-auto glass-strong rounded-2xl p-6 md:p-8 glow-purple space-y-6 mb-12">
         <h3 className="text-lg font-semibold text-center mb-4">Core Proficiency</h3>
