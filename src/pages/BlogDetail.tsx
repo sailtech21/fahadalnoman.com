@@ -42,6 +42,13 @@ const BlogDetail = () => {
 
   return (
     <PageLayout>
+      <SEO
+        title={`${post.title} | Fahad Al Noman Blog`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        image={post.cover}
+      />
       <article className="max-w-3xl mx-auto px-6 pt-28 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
