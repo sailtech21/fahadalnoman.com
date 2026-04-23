@@ -93,7 +93,33 @@ export const experience = [
   },
 ];
 
-export const blogPosts = [
+import laravelCover from "@/assets/blog/laravel-cover.jpg";
+import laravelInline from "@/assets/blog/laravel-inline.jpg";
+import ecommerceCover from "@/assets/blog/ecommerce-cover.jpg";
+import ecommerceInline from "@/assets/blog/ecommerce-inline.jpg";
+import aiCover from "@/assets/blog/ai-cover.jpg";
+import aiInline from "@/assets/blog/ai-inline.jpg";
+import journeyCover from "@/assets/blog/journey-cover.jpg";
+import journeyInline from "@/assets/blog/journey-inline.jpg";
+import devopsCover from "@/assets/blog/devops-cover.jpg";
+import devopsInline from "@/assets/blog/devops-inline.jpg";
+import clientsCover from "@/assets/blog/clients-cover.jpg";
+import clientsInline from "@/assets/blog/clients-inline.jpg";
+
+type BlogBlock = { type: "paragraph"; text: string } | { type: "image"; src: string; alt: string };
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  readTime: string;
+  cover: string;
+  content: BlogBlock[];
+};
+
+export const blogPosts: BlogPost[] = [
   {
     slug: "why-laravel-best-php-framework-2025",
     title: "Why Laravel is Still the Best PHP Framework in 2025",
@@ -101,11 +127,13 @@ export const blogPosts = [
     category: "Technology",
     date: "April 15, 2025",
     readTime: "5 min read",
+    cover: laravelCover,
     content: [
-      "Laravel has dominated the PHP ecosystem for over a decade, and in 2025 it remains the framework of choice for developers building everything from MVPs to enterprise platforms. Its elegant syntax, batteries-included approach, and active community make it uniquely positioned among modern web frameworks.",
-      "One of Laravel's biggest strengths is its developer experience. Tools like Eloquent ORM, Blade templating, and Artisan CLI make routine tasks feel effortless. Combined with first-party packages such as Sanctum, Horizon, Telescope, and Livewire, you get a complete platform — not just a framework.",
-      "Performance has also caught up. With Laravel Octane (powered by Swoole or RoadRunner), modern PHP 8.3 JIT improvements, and HTTP/3 support, Laravel apps can rival Node.js in throughput while keeping development velocity high.",
-      "For businesses, Laravel means faster delivery, lower maintenance costs, and a huge talent pool. That's why at ZURVIX we still default to Laravel for most full-stack projects in 2025.",
+      { type: "paragraph", text: "Laravel has dominated the PHP ecosystem for over a decade, and in 2025 it remains the framework of choice for developers building everything from MVPs to enterprise platforms. Its elegant syntax, batteries-included approach, and active community make it uniquely positioned among modern web frameworks." },
+      { type: "paragraph", text: "One of Laravel's biggest strengths is its developer experience. Tools like Eloquent ORM, Blade templating, and Artisan CLI make routine tasks feel effortless. Combined with first-party packages such as Sanctum, Horizon, Telescope, and Livewire, you get a complete platform — not just a framework." },
+      { type: "image", src: laravelInline, alt: "Laravel PHP code on screen" },
+      { type: "paragraph", text: "Performance has also caught up. With Laravel Octane (powered by Swoole or RoadRunner), modern PHP 8.3 JIT improvements, and HTTP/3 support, Laravel apps can rival Node.js in throughput while keeping development velocity high." },
+      { type: "paragraph", text: "For businesses, Laravel means faster delivery, lower maintenance costs, and a huge talent pool. That's why at ZURVIX we still default to Laravel for most full-stack projects in 2025." },
     ],
   },
   {
@@ -115,11 +143,13 @@ export const blogPosts = [
     category: "Business",
     date: "March 28, 2025",
     readTime: "7 min read",
+    cover: ecommerceCover,
     content: [
-      "Scaling an e-commerce platform is less about a single magic technology and more about thoughtful architecture. Caching strategies, queue-based processing, and a clean separation of concerns are what keep stores responsive during traffic spikes.",
-      "Start with a solid data model. Products, variants, inventory, orders, and customers should each have clear boundaries. Use read replicas for product browsing and keep write paths (checkout, payments) on the primary database.",
-      "Queue everything that doesn't have to be instant: order confirmations, invoice generation, inventory sync, recommendation updates. Tools like Redis + Laravel Horizon or BullMQ on Node.js make this trivial.",
-      "Finally, never underestimate caching. Page caching for product listings, fragment caching for personalized blocks, and edge caching via a CDN can cut your origin load by 90%+ on Black Friday traffic.",
+      { type: "paragraph", text: "Scaling an e-commerce platform is less about a single magic technology and more about thoughtful architecture. Caching strategies, queue-based processing, and a clean separation of concerns are what keep stores responsive during traffic spikes." },
+      { type: "paragraph", text: "Start with a solid data model. Products, variants, inventory, orders, and customers should each have clear boundaries. Use read replicas for product browsing and keep write paths (checkout, payments) on the primary database." },
+      { type: "image", src: ecommerceInline, alt: "E-commerce architecture diagram" },
+      { type: "paragraph", text: "Queue everything that doesn't have to be instant: order confirmations, invoice generation, inventory sync, recommendation updates. Tools like Redis + Laravel Horizon or BullMQ on Node.js make this trivial." },
+      { type: "paragraph", text: "Finally, never underestimate caching. Page caching for product listings, fragment caching for personalized blocks, and edge caching via a CDN can cut your origin load by 90%+ on Black Friday traffic." },
     ],
   },
   {
@@ -129,10 +159,12 @@ export const blogPosts = [
     category: "AI & Tech",
     date: "March 10, 2025",
     readTime: "6 min read",
+    cover: aiCover,
     content: [
-      "AI is no longer a feature you bolt on at the end — it's becoming part of the development process itself. From code generation to automated testing and observability, AI is reshaping every layer of the stack.",
-      "On the product side, embedding LLMs into your application unlocks natural-language search, smart recommendations, and AI assistants that actually understand your domain. The trick is grounding them with your own data using RAG patterns.",
-      "On the developer side, tools like GitHub Copilot, Claude, and Cursor have changed how fast we can ship. The developers who win in 2025 are the ones who learn to direct AI effectively, not the ones who fear it.",
+      { type: "paragraph", text: "AI is no longer a feature you bolt on at the end — it's becoming part of the development process itself. From code generation to automated testing and observability, AI is reshaping every layer of the stack." },
+      { type: "image", src: aiInline, alt: "Developer working with AI assistant" },
+      { type: "paragraph", text: "On the product side, embedding LLMs into your application unlocks natural-language search, smart recommendations, and AI assistants that actually understand your domain. The trick is grounding them with your own data using RAG patterns." },
+      { type: "paragraph", text: "On the developer side, tools like GitHub Copilot, Claude, and Cursor have changed how fast we can ship. The developers who win in 2025 are the ones who learn to direct AI effectively, not the ones who fear it." },
     ],
   },
   {
@@ -142,10 +174,12 @@ export const blogPosts = [
     category: "Personal",
     date: "February 20, 2025",
     readTime: "8 min read",
+    cover: journeyCover,
     content: [
-      "I started freelancing while still in college, taking on small WordPress and Laravel projects. What began as a way to earn pocket money quickly turned into something much bigger.",
-      "The hardest transition wasn't technical — it was learning to think like an owner instead of a contractor. Pricing, scope, client communication, and saying 'no' became as important as writing clean code.",
-      "Founding ZURVIX was about scaling that mindset. Building a team, defining processes, and focusing on long-term partnerships instead of one-off gigs. It's still early, but the journey has taught me more than any course ever could.",
+      { type: "paragraph", text: "I started freelancing while still in college, taking on small WordPress and Laravel projects. What began as a way to earn pocket money quickly turned into something much bigger." },
+      { type: "image", src: journeyInline, alt: "Developer working at night" },
+      { type: "paragraph", text: "The hardest transition wasn't technical — it was learning to think like an owner instead of a contractor. Pricing, scope, client communication, and saying 'no' became as important as writing clean code." },
+      { type: "paragraph", text: "Founding ZURVIX was about scaling that mindset. Building a team, defining processes, and focusing on long-term partnerships instead of one-off gigs. It's still early, but the journey has taught me more than any course ever could." },
     ],
   },
   {
@@ -155,10 +189,12 @@ export const blogPosts = [
     category: "Technology",
     date: "February 5, 2025",
     readTime: "10 min read",
+    cover: devopsCover,
     content: [
-      "Renting a VPS for the first time can feel intimidating, but the fundamentals are simpler than they look. Start with a clean Ubuntu LTS image, create a non-root user, harden SSH, and enable a firewall — that covers 80% of your security baseline.",
-      "Next, install your runtime (Node, PHP-FPM, or whatever your stack needs) along with Nginx as a reverse proxy. Use Certbot for automatic HTTPS, and you've got a production-ready environment.",
-      "For CI/CD, GitHub Actions is the easiest way to start. Push to main, run tests, then SSH into the server and pull the latest code. Once that flow is reliable, graduate to zero-downtime deployments with tools like Deployer or Kamal.",
+      { type: "paragraph", text: "Renting a VPS for the first time can feel intimidating, but the fundamentals are simpler than they look. Start with a clean Ubuntu LTS image, create a non-root user, harden SSH, and enable a firewall — that covers 80% of your security baseline." },
+      { type: "paragraph", text: "Next, install your runtime (Node, PHP-FPM, or whatever your stack needs) along with Nginx as a reverse proxy. Use Certbot for automatic HTTPS, and you've got a production-ready environment." },
+      { type: "image", src: devopsInline, alt: "CI/CD deployment pipeline diagram" },
+      { type: "paragraph", text: "For CI/CD, GitHub Actions is the easiest way to start. Push to main, run tests, then SSH into the server and pull the latest code. Once that flow is reliable, graduate to zero-downtime deployments with tools like Deployer or Kamal." },
     ],
   },
   {
@@ -168,10 +204,12 @@ export const blogPosts = [
     category: "Business",
     date: "January 18, 2025",
     readTime: "6 min read",
+    cover: clientsCover,
     content: [
-      "Landing international clients is mostly about visibility and trust. A clean portfolio, a clear value proposition, and consistent presence on the platforms where your clients actually hang out make all the difference.",
-      "LinkedIn, Upwork, and Twitter/X are still the top channels for developers from South Asia. But what really moves the needle is referrals — over-deliver on your first few international projects and the word will spread.",
-      "Communication matters as much as code. Respond fast, write clearly, and proactively share progress. Clients across time zones value developers they don't have to chase.",
+      { type: "paragraph", text: "Landing international clients is mostly about visibility and trust. A clean portfolio, a clear value proposition, and consistent presence on the platforms where your clients actually hang out make all the difference." },
+      { type: "image", src: clientsInline, alt: "Video call with international client" },
+      { type: "paragraph", text: "LinkedIn, Upwork, and Twitter/X are still the top channels for developers from South Asia. But what really moves the needle is referrals — over-deliver on your first few international projects and the word will spread." },
+      { type: "paragraph", text: "Communication matters as much as code. Respond fast, write clearly, and proactively share progress. Clients across time zones value developers they don't have to chase." },
     ],
   },
 ];
