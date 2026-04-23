@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
+import SEO from "@/components/SEO";
 import { blogPosts } from "@/lib/data";
 import { ArrowLeft, ArrowRight, Clock, Tag, Calendar } from "lucide-react";
 import { useEffect } from "react";
