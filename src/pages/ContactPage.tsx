@@ -56,6 +56,7 @@ const ContactPage = () => {
 
   return (
     <PageLayout>
+      <SEO title="Contact Fahad Al Noman | Hire a Full Stack Developer" description="Get in touch with Fahad Al Noman to discuss your web project, custom development, or collaboration opportunities." path="/contact" />
       <SectionWrapper id="contact" title="Let's |Connect" subtitle="Have a project in mind? Let's build something great together.">
         {/* Quick Contact Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">

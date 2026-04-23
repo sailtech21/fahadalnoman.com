@@ -23,6 +23,7 @@ const processSteps = [
 
 const ServicesPage = () => (
   <PageLayout>
+    <SEO title="Web Development Services | Fahad Al Noman" description="Hire Fahad Al Noman for full stack web development, e-commerce, custom web apps, server setup, and AI integration services." path="/services" />
     <SectionWrapper id="services" title="Services I |Offer" subtitle="End-to-end solutions from concept to deployment.">
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-16">
         {services.map((s, i) => (

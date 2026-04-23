@@ -41,6 +41,7 @@ const WorkPage = () => {
 
   return (
     <PageLayout>
+      <SEO title="Portfolio & Projects | Fahad Al Noman" description="Explore selected projects and Bangladesh work by Fahad Al Noman — modern web apps built with React, Laravel and more." path="/work" />
       <SectionWrapper id="work" title="My |Work" subtitle="A selection of projects I've built for clients worldwide.">
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto mb-10">
