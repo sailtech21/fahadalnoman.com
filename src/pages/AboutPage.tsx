@@ -25,6 +25,18 @@ const AboutPage = () => (
       title="About Fahad Al Noman | Full Stack Web Developer"
       description="Learn about Fahad Al Noman, a Full Stack Web Developer from Bangladesh specializing in React, Laravel, and scalable web applications."
       path="/about"
+      keywords="About Fahad Al Noman, Bangladeshi Web Developer, React Laravel Developer, ZURVIX Founder, Dhaka Developer"
+      jsonLd={{
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        url: "https://fahadalnoman.com/about",
+        mainEntity: {
+          "@type": "Person",
+          name: "Fahad Al Noman",
+          jobTitle: "Full Stack Web Developer",
+          address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+        },
+      }}
     />
     <SectionWrapper id="about" title="About |Me" subtitle="From a small town to building digital solutions for the world.">
       <div className="grid lg:grid-cols-3 gap-8">

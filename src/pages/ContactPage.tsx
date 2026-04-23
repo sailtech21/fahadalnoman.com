@@ -56,7 +56,23 @@ const ContactPage = () => {
 
   return (
     <PageLayout>
-      <SEO title="Contact Fahad Al Noman | Hire a Full Stack Developer" description="Get in touch with Fahad Al Noman to discuss your web project, custom development, or collaboration opportunities." path="/contact" />
+      <SEO
+        title="Contact Fahad Al Noman | Hire a Full Stack Developer"
+        description="Get in touch with Fahad Al Noman to discuss your web project, custom development, or collaboration opportunities."
+        path="/contact"
+        keywords="contact Fahad Al Noman, hire web developer Bangladesh, freelance Laravel React developer, web development inquiry"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          url: "https://fahadalnoman.com/contact",
+          mainEntity: {
+            "@type": "Person",
+            name: "Fahad Al Noman",
+            email: "fahadnomanofficial@gmail.com",
+            telephone: "+8801601345600",
+          },
+        }}
+      />
       <SectionWrapper id="contact" title="Let's |Connect" subtitle="Have a project in mind? Let's build something great together.">
         {/* Quick Contact Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
