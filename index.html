@@ -3,30 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
     <title>Fahad Al Noman | Full Stack Web Developer Portfolio</title>
-    <meta name="description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites &amp; web apps with React, Laravel, and modern tech. View portfolio &amp; hire today.">
+    <meta name="description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites & web apps with React, Laravel, and modern tech. View portfolio & hire today." />
     <meta name="author" content="Fahad Al Noman" />
     <meta name="keywords" content="Fahad Al Noman, Full Stack Web Developer, React Developer, Laravel Developer, Web Developer Bangladesh, Frontend Developer, Backend Developer, Portfolio" />
     <meta name="robots" content="index, follow" />
+    <!-- FIX: added theme-color -->
+    <meta name="theme-color" content="#00f5ff" />
     <link rel="canonical" href="https://fahadalnoman.com/" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph — FIX: removed duplicates, clean single set -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fahadalnoman.com/" />
     <meta property="og:site_name" content="Fahad Al Noman" />
-    
-    
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/BDoFLJchT3MPC3tcVfJ6JX21buU2/social-images/social-1776893545621-Gemini_Generated_Image_5a6bdi5a6bdi5a6b_(1).webp">
+    <meta property="og:title" content="Fahad Al Noman | Full Stack Web Developer Portfolio" />
+    <meta property="og:description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites & web apps with React, Laravel, and modern tech. View portfolio & hire today." />
+    <meta property="og:image" content="https://fahadalnoman.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- Twitter -->
+    <!-- Twitter / X — FIX: removed duplicates, added twitter:site + twitter:creator -->
     <meta name="twitter:card" content="summary_large_image" />
-    
-    
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/BDoFLJchT3MPC3tcVfJ6JX21buU2/social-images/social-1776893545621-Gemini_Generated_Image_5a6bdi5a6bdi5a6b_(1).webp">
+    <meta name="twitter:site" content="@fahadalnoman" />
+    <meta name="twitter:creator" content="@fahadalnoman" />
+    <meta name="twitter:title" content="Fahad Al Noman | Full Stack Web Developer Portfolio" />
+    <meta name="twitter:description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites & web apps with React, Laravel, and modern tech. View portfolio & hire today." />
+    <meta name="twitter:image" content="https://fahadalnoman.com/og-image.png" />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data — FIX: sameAs was empty [], now includes social profiles -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,8 +43,20 @@
       "url": "https://fahadalnoman.com",
       "jobTitle": "Full Stack Web Developer",
       "description": "Full Stack Web Developer building high-performance websites and scalable web applications.",
-      "knowsAbout": ["React", "Laravel", "TypeScript", "Node.js", "Tailwind CSS", "Web Development"],
-      "sameAs": []
+      "email": "fahadnomanofficial@gmail.com",
+      "telephone": "+8801601345600",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dhaka",
+        "addressCountry": "BD"
+      },
+      "knowsAbout": ["React", "Laravel", "TypeScript", "Node.js", "Tailwind CSS", "Web Development", "PHP", "MySQL"],
+      "sameAs": [
+        "https://www.facebook.com/Fahadnomanofficial/",
+        "https://www.instagram.com/_myself_fahad",
+        "https://www.linkedin.com/in/fahad-al-noman-b14042263/",
+        "https://github.com/sailtech21"
+      ]
     }
     </script>
     <script type="application/ld+json">
@@ -44,15 +64,11 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Fahad Al Noman Portfolio",
-      "url": "https://fahadalnoman.com"
+      "url": "https://fahadalnoman.com",
+      "description": "Portfolio of Fahad Al Noman — Full Stack Web Developer"
     }
     </script>
-    <meta property="og:title" content="Fahad Al Noman | Full Stack Web Developer Portfolio">
-  <meta name="twitter:title" content="Fahad Al Noman | Full Stack Web Developer Portfolio">
-  <meta property="og:description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites &amp; web apps with React, Laravel, and modern tech. View portfolio &amp; hire today.">
-  <meta name="twitter:description" content="Fahad Al Noman — Full Stack Web Developer. Building fast, scalable websites &amp; web apps with React, Laravel, and modern tech. View portfolio &amp; hire today.">
-</head>
-
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
