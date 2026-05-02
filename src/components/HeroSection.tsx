@@ -58,14 +58,12 @@ const HeroSection = () => {
             I build high-performance websites & scalable apps for modern businesses 🚀
           </p>
           <div className="flex flex-wrap gap-4">
-            {/* FIX: was href="#work" — anchor links don't work in React Router SPA */}
             <Link
               to="/work"
               className="px-6 py-3 rounded-lg font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity flex items-center gap-2"
             >
               View Work <ArrowDown size={16} />
             </Link>
-            {/* FIX: was href="#contact" */}
             <Link
               to="/contact"
               className="px-6 py-3 rounded-lg font-medium glass border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
@@ -99,11 +97,14 @@ const HeroSection = () => {
             </div>
             <div className="p-6 font-mono text-sm space-y-1 min-h-[280px]">
               {displayedLines.map((line, i) => {
-                // FIX: previous condition `!line && line !== ""` was always false
-                const isConst = line.includes("const");
-                const isComment = line.startsWith("//");
-                const isStart = line.includes("startProject");
+                // Guard: skip undefined/null values that may appear during animation
+                if (line == null) return null;
+
                 const isEmpty = line === "";
+                const isConst = !isEmpty && line.includes("const");
+                const isComment = !isEmpty && line.startsWith("//");
+                const isStart = !isEmpty && line.includes("startProject");
+
                 return (
                   <motion.div
                     key={i}
