@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ArrowDown, ExternalLink, MessageCircle } from "lucide-react";
 
 const codeLines = [
@@ -57,18 +58,20 @@ const HeroSection = () => {
             I build high-performance websites & scalable apps for modern businesses 🚀
           </p>
           <div className="flex flex-wrap gap-4">
-            <a
-              href="#work"
+            {/* FIX: was href="#work" — anchor links don't work in React Router SPA */}
+            <Link
+              to="/work"
               className="px-6 py-3 rounded-lg font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity flex items-center gap-2"
             >
               View Work <ArrowDown size={16} />
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            {/* FIX: was href="#contact" */}
+            <Link
+              to="/contact"
               className="px-6 py-3 rounded-lg font-medium glass border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
             >
               Hire Me <ExternalLink size={16} />
-            </a>
+            </Link>
             <a
               href="https://wa.me/+8801601345600"
               target="_blank"
@@ -96,10 +99,11 @@ const HeroSection = () => {
             </div>
             <div className="p-6 font-mono text-sm space-y-1 min-h-[280px]">
               {displayedLines.map((line, i) => {
-                if (!line && line !== "") return null;
-                const isConst = typeof line === "string" && line.includes("const");
-                const isComment = typeof line === "string" && line.startsWith("//");
-                const isStart = typeof line === "string" && line.includes("startProject");
+                // FIX: previous condition `!line && line !== ""` was always false
+                const isConst = line.includes("const");
+                const isComment = line.startsWith("//");
+                const isStart = line.includes("startProject");
+                const isEmpty = line === "";
                 return (
                   <motion.div
                     key={i}
@@ -109,6 +113,7 @@ const HeroSection = () => {
                   >
                     <span className="text-muted-foreground/50 select-none w-6 text-right">{i + 1}</span>
                     <span>
+                      {isEmpty && <span>&nbsp;</span>}
                       {isConst && (
                         <>
                           <span className="text-purple-400">const </span>
@@ -119,7 +124,7 @@ const HeroSection = () => {
                       )}
                       {isComment && <span className="text-muted-foreground/60">{line}</span>}
                       {isStart && <span className="text-primary">{line}</span>}
-                      {!isConst && !isComment && !isStart && (
+                      {!isConst && !isComment && !isStart && !isEmpty && (
                         <span className="text-muted-foreground/40">{line}</span>
                       )}
                     </span>
