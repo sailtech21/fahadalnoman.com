@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-
 const links = [
   { label: "About", path: "/about" },
   { label: "Skills", path: "/skills" },
@@ -78,8 +77,10 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* FIX: Added aria-label for accessibility */}
           <button
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
             className="md:hidden text-foreground p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
             onClick={() => setOpen(!open)}
           >
@@ -88,7 +89,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile menu - Full screen overlay */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -98,12 +99,8 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 md:hidden"
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-background/95 backdrop-blur-xl" />
-
-            {/* Content */}
             <div className="relative z-10 flex flex-col h-full">
-              {/* Header */}
               <div className="px-4 py-3 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-1" onClick={() => setOpen(false)}>
                   <span className="text-2xl font-extrabold tracking-tight text-gradient">
@@ -111,14 +108,13 @@ const Navbar = () => {
                   </span>
                 </Link>
                 <button
+                  aria-label="Close navigation menu"
                   className="text-foreground p-2 min-h-[48px] min-w-[48px] flex items-center justify-center"
                   onClick={() => setOpen(false)}
                 >
                   <X size={24} />
                 </button>
               </div>
-
-              {/* Links */}
               <div className="flex-1 flex flex-col items-center justify-center gap-2 px-6">
                 {links.map((l, i) => (
                   <motion.div
