@@ -10,6 +10,7 @@ const educationIcons: Record<string, React.ReactNode> = {
   graduation: <GraduationCap className="text-secondary" size={22} />,
   code: <Code className="text-primary" size={22} />,
   book: <BookOpen className="text-accent" size={22} />,
+  building: <Building2 className="text-secondary" size={22} />,
 };
 
 const interests = [
@@ -74,6 +75,10 @@ const AboutPage = () => (
               <div>
                 <p className="text-muted-foreground text-xs">Permanent</p>
                 <p className="text-foreground font-medium">Jhenaidah, Khulna, Bangladesh</p>
+              </div>
+              <div>
+                <p className="text-muted-foreground text-xs">Moving to</p>
+                <p className="text-foreground font-medium">Valletta, Malta</p>
               </div>
             </div>
           </div>
@@ -155,9 +160,21 @@ const AboutPage = () => (
                         {edu.degree}
                       </h4>
                       <p className="text-muted-foreground text-sm mt-1">{edu.institution}</p>
-                      <span className="inline-block mt-2 text-xs font-mono px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-                        {edu.status}
-                      </span>
+                      {edu.location && (
+                        <p className="text-muted-foreground text-xs mt-0.5 flex items-center gap-1">
+                          <MapPin size={12} /> {edu.location}
+                        </p>
+                      )}
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <span className="inline-block text-xs font-mono px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+                          {edu.status}
+                        </span>
+                        {edu.start && (
+                          <span className="inline-block text-xs font-mono text-muted-foreground">
+                            Start: {edu.start}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
