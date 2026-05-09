@@ -67,7 +67,7 @@ export const education = [
     icon: "building",
   },
   {
-    degree: "BSc in C.S.E",
+    degree: "BA in Economics",
     institution: "Times University, Bangladesh",
     status: "Completed",
     icon: "graduation",
