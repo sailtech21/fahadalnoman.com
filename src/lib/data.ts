@@ -59,6 +59,14 @@ export const socialLinks = [
 
 export const education = [
   {
+    degree: "OTHM Level 4 Diploma in Business Management (MQF Level 5)",
+    institution: "Cross College Malta",
+    location: "Qormi, Malta",
+    status: "Running",
+    start: "June 2025",
+    icon: "building",
+  },
+  {
     degree: "BSc in C.S.E",
     institution: "Times University, Bangladesh",
     status: "Completed",
