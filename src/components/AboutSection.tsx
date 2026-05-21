@@ -38,22 +38,11 @@ const AboutSection = () => (
         <div className="glass-strong rounded-2xl p-5 w-full space-y-3">
           <div className="flex items-center gap-2 text-primary">
             <MapPin size={16} />
-            <span className="text-sm font-semibold">Location</span>
+            <span className="text-sm font-semibold">Current Location</span>
           </div>
-          <div className="space-y-2 text-sm">
-              <div>
-                <p className="text-muted-foreground text-xs">Current</p>
-                <p className="text-foreground font-medium">Dhaka, Bangladesh</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground text-xs">Permanent</p>
-                <p className="text-foreground font-medium">Jhenaidah, Khulna, Bangladesh</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground text-xs">Moving to</p>
-                <p className="text-foreground font-medium">Valletta, Malta</p>
-              </div>
-            </div>
+          <div className="text-sm">
+            <p className="text-foreground font-medium">Qormi, Malta</p>
+          </div>
         </div>
 
         {/* Story */}
