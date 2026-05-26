@@ -50,7 +50,7 @@ export const techStack = [
 ];
 
 export const socialLinks = [
-  { name: "Facebook", url: "https://www.facebook.com/Fahadnomanofficial/", icon: "facebook" },
+  { name: "Facebook", url: "https://www.facebook.com/share/1DQ1cQbwPb/", icon: "facebook" },
   { name: "Instagram", url: "https://www.instagram.com/_myself_fahad", icon: "instagram" },
   { name: "LinkedIn", url: "https://www.linkedin.com/in/fahad-al-noman-b14042263/", icon: "linkedin" },
   { name: "Email", url: "mailto:fahadnomanofficial@gmail.com", icon: "email" },
