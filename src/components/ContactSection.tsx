@@ -15,7 +15,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
@@ -37,7 +37,7 @@ const ContactSection = () => {
       if (error) throw error;
       if (data?.success) {
         toast({ title: "Message sent!", description: "I'll get back to you soon." });
-        setForm({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+        setForm({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
       } else {
         throw new Error(data?.error || "Failed to send");
       }

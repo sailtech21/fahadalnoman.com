@@ -54,7 +54,7 @@ export const socialLinks = [
   { name: "Instagram", url: "https://www.instagram.com/_myself_fahad", icon: "instagram" },
   { name: "LinkedIn", url: "https://www.linkedin.com/in/fahad-al-noman-b14042263/", icon: "linkedin" },
   { name: "Email", url: "mailto:fahadnomanofficial@gmail.com", icon: "email" },
-  { name: "WhatsApp", url: "https://wa.me/+8801601345600", icon: "whatsapp" },
+  { name: "WhatsApp", url: "https://wa.me/+35699784477", icon: "whatsapp" },
 ];
 
 export const education = [
