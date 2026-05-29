@@ -113,11 +113,7 @@ const ContactPage = () => {
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-muted-foreground text-xs">Current</p>
-                  <p className="text-foreground font-medium">Dhaka, Bangladesh</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-xs">Permanent</p>
-                  <p className="text-foreground font-medium">Jhenaidah, Khulna, Bangladesh</p>
+                  <p className="text-foreground font-medium">Qormi, Malta</p>
                 </div>
               </div>
             </div>
@@ -128,7 +124,7 @@ const ContactPage = () => {
                 <Clock size={16} />
                 <span className="text-sm font-semibold">Timezone</span>
               </div>
-              <p className="text-foreground text-sm font-medium">GMT+6 (Bangladesh Standard Time)</p>
+              <p className="text-foreground text-sm font-medium">GMT+1 (Central European Time)</p>
             </div>
 
             {/* Social Links */}
@@ -180,6 +176,7 @@ const ContactPage = () => {
                   onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
                   className="w-24 px-2 py-3.5 rounded-xl bg-background/50 border border-border/50 text-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors min-h-[48px]"
                 >
+                  <option value="+356">+356 🇲🇹</option>
                   <option value="+880">+880 🇧🇩</option>
                   <option value="+1">+1 🇺🇸</option>
                   <option value="+44">+44 🇬🇧</option>

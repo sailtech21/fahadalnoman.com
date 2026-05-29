@@ -105,6 +105,7 @@ const ContactSection = () => {
                 onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
                 className="w-24 px-2 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors"
               >
+                <option value="+356">+356 🇲🇹</option>
                 <option value="+880">+880 🇧🇩</option>
                 <option value="+1">+1 🇺🇸</option>
                 <option value="+44">+44 🇬🇧</option>
