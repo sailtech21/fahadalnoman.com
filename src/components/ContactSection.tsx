@@ -15,7 +15,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
@@ -37,7 +37,7 @@ const ContactSection = () => {
       if (error) throw error;
       if (data?.success) {
         toast({ title: "Message sent!", description: "I'll get back to you soon." });
-        setForm({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+        setForm({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
       } else {
         throw new Error(data?.error || "Failed to send");
       }
@@ -105,6 +105,7 @@ const ContactSection = () => {
                 onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
                 className="w-24 px-2 py-3 rounded-xl bg-background/50 border border-border/50 text-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors"
               >
+                <option value="+356">+356 🇲🇹</option>
                 <option value="+880">+880 🇧🇩</option>
                 <option value="+1">+1 🇺🇸</option>
                 <option value="+44">+44 🇬🇧</option>

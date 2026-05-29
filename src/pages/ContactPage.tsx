@@ -17,7 +17,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const ContactPage = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
   const [sending, setSending] = useState(false);
   const { toast } = useToast();
 
@@ -39,7 +39,7 @@ const ContactPage = () => {
       if (error) throw error;
       if (data?.success) {
         toast({ title: "Message sent!", description: "I'll get back to you soon." });
-        setForm({ name: "", email: "", phone: "", countryCode: "+880", whatsappAvailable: false, message: "" });
+        setForm({ name: "", email: "", phone: "", countryCode: "+356", whatsappAvailable: false, message: "" });
       } else {
         throw new Error(data?.error || "Failed to send");
       }
@@ -69,7 +69,7 @@ const ContactPage = () => {
             "@type": "Person",
             name: "Fahad Al Noman",
             email: "fahadnomanofficial@gmail.com",
-            telephone: "+8801601345600",
+            telephone: "+35699784477",
           },
         }}
       />
@@ -77,7 +77,7 @@ const ContactPage = () => {
         {/* Quick Contact Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <a
-            href="https://wa.me/+8801601345600"
+            href="https://wa.me/+35699784477"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 min-h-[48px] rounded-xl font-medium bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20 transition-colors"
@@ -113,11 +113,7 @@ const ContactPage = () => {
               <div className="space-y-2 text-sm">
                 <div>
                   <p className="text-muted-foreground text-xs">Current</p>
-                  <p className="text-foreground font-medium">Dhaka, Bangladesh</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-xs">Permanent</p>
-                  <p className="text-foreground font-medium">Jhenaidah, Khulna, Bangladesh</p>
+                  <p className="text-foreground font-medium">Qormi, Malta</p>
                 </div>
               </div>
             </div>
@@ -128,7 +124,7 @@ const ContactPage = () => {
                 <Clock size={16} />
                 <span className="text-sm font-semibold">Timezone</span>
               </div>
-              <p className="text-foreground text-sm font-medium">GMT+6 (Bangladesh Standard Time)</p>
+              <p className="text-foreground text-sm font-medium">GMT+1 (Central European Time)</p>
             </div>
 
             {/* Social Links */}
@@ -180,6 +176,7 @@ const ContactPage = () => {
                   onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
                   className="w-24 px-2 py-3.5 rounded-xl bg-background/50 border border-border/50 text-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors min-h-[48px]"
                 >
+                  <option value="+356">+356 🇲🇹</option>
                   <option value="+880">+880 🇧🇩</option>
                   <option value="+1">+1 🇺🇸</option>
                   <option value="+44">+44 🇬🇧</option>
